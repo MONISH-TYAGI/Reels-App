@@ -1,0 +1,13 @@
+.videos-styling{
+    width: 20em;
+    height: 30em;
+    justify-content: center;
+   
+    scroll-snap-align: start;
+}
+.video-div{
+    display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
