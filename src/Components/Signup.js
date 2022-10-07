@@ -84,6 +84,7 @@ const handleClick = async() => {
       },2000)
   }
 }
+
   return (
       <div className="signupWrapper">
           <div className="signupCard">

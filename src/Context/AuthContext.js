@@ -15,9 +15,15 @@ function login(email,password)
 function logout(){
     return auth.signOut()
 }
-// function forgotPassword(email){
-//     return auth.sendPasswordResetEmail(auth,email);
-// }
+const forgotPassword = async (email) => {
+    try {
+      await auth.sendPasswordResetEmail(email);
+      alert("Password reset link sent!");
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  };
 useEffect(()=>{
     const unsub=auth.onAuthStateChanged((user)=>{
         setUser(user);
@@ -28,7 +34,7 @@ useEffect(()=>{
     }
 },[])
 const store={
-    user,signup,login,logout
+    user,signup,login,logout,forgotPassword
 }
 return (
     <AuthContext.Provider value={store}>

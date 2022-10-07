@@ -67,8 +67,19 @@ try{
     setLoading(false)
 }
     }
-    // const {forgotPassword}=useContext(AuthContext);
-const forgotPasswordHandler=()=>{}
+    const {forgotPassword}=useContext(AuthContext);
+    const forgotPasswordHandler=async()=>{
+        //     console.log("forgot");
+            // console.log(email)
+        if(email){
+            // console.log(email)
+            setLoading(true)
+            let res=await forgotPassword(email);
+            setLoading(false);
+        }
+        else
+        alert('hello');
+        }
 
   return (
       <div className="loginWrapper">
@@ -106,7 +117,9 @@ const forgotPasswordHandler=()=>{}
                     <TextField id="outlined-basic" label="Email" variant="outlined" fullWidth={true} margin="dense" size="small" onChange={(e)=>setEmail(e.target.value)}/>
                     <TextField id="outlined-basic" label="Password" variant="outlined" fullWidth={true} margin="dense" size="small" onChange={(e)=>setPassword(e.target.value)} />
                     <Typography className={classes.text2} color="primary" variant="subtitle1" onClick={()=>forgotPasswordHandler}>
-                        Forget Password ?
+                     <Button color="primary" fullWidth={true} variant="contained" onClick={forgotPasswordHandler} >
+                    Forgot Password
+                    </Button>
                     </Typography>
                 </CardContent>
                 <CardActions>
