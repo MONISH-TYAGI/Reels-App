@@ -48,6 +48,7 @@ const handleClick = async() => {
       setError('')
       setLoading(true)
       let userObj = await signup(email,password)
+      console.log("userObj->"+userObj);
       let uid = userObj.user.uid
       const uploadTask = storage.ref(`/users/${uid}/ProfileImage`).put(file);
       uploadTask.on('state_changed',fn1,fn2,fn3);
@@ -56,7 +57,7 @@ const handleClick = async() => {
           console.log(`Upload is ${progress} done.`)
       }
       function fn2(error){
-          setError(error);
+          setError(error+"");
           setTimeout(()=>{
               setError('')
           },2000);
@@ -78,10 +79,19 @@ const handleClick = async() => {
           navigate("/");
       }
   }catch(err){
-      setError(err);
+    console.log("error->"+err);
+    
+    setError(err+"");
+
+
+        // console.log("problem");
+
+      
+      
       setTimeout(()=>{
           setError('')
       },2000)
+      
   }
 }
 
@@ -96,7 +106,7 @@ const handleClick = async() => {
                     <Typography className={classes.text1} variant="subtitle1">
                         Sign up to see photos and videos from your friends
            </Typography>
-                     {error!=''&& <Alert severity="error">{error}</Alert>}
+                    { (error!='')? <Alert severity="error">{error}</Alert>:<></>}
  <TextField id="outlined-basic" label="Email" variant="outlined" fullWidth={true} margin="dense" size="small" value={email} onChange={(e)=>setEmail(e.target.value)} />
  <TextField id="outlined-basic" label="Password"  variant="outlined" fullWidth={true} margin="dense" size="small" value={password} onChange={(e)=>setPassword(e.target.value)}/>
  <TextField id="outlined-basic" label="Full Name" variant="outlined" fullWidth={true} margin="dense" size="small" value={name} onChange={(e)=>setName(e.target.value)}/>
